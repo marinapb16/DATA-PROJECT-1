@@ -5,10 +5,13 @@ services:
     container_name: local_pgdb
     restart: always
     ports:
-      - "54320:5432"
+      - "5432:5432"
     environment:
+      DATABASE_HOST: 127.0.0.1
       POSTGRES_USER: user
       POSTGRES_PASSWORD: admin
+
+
     volumes:
       - local_pgdata:/var/lib/postgresql/data
   pgadmin:
@@ -22,6 +25,20 @@ services:
       PGADMIN_DEFAULT_PASSWORD: admin
     volumes:
       - pgadmin-data:/var/lib/pgadmin
+  
+  python:
+    image: test
+    container_name: python
+    restart: always
+    ports:
+      - "3000:3000"
+    working_dir: /app
+    volumes:
+      - ./:/app
+    environment:
+      DATABASE_HOST: 127.0.0.1
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: admin
 
 volumes:
   local_pgdata:
