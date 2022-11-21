@@ -5,7 +5,7 @@ quiosco.data_flores()
 
 #conexión con postgres
 conexion = psycopg2.connect(
-    host='localhost',
+    host='db',
     user='user',
     password='admin',
     database='postgres'
@@ -13,8 +13,9 @@ conexion = psycopg2.connect(
 conexion.autocommit = True
 cursor = conexion.cursor()
 
-tabla = "CREATE TABLE flor (Nombre NOT NULL, Tipo NOT NULL);"
-cursor.execute(tabla)
+print('Conexión realizada con éxito')
+#tabla = "CREATE TABLE flor (Nombre STRING(100) NOT NULL, Tipo STRING(100) NOT NULL);"
+#cursor.execute(tabla)
 
-query = "INSERT INTO flor (Nombre, Tipo) VALUES ('{response['name']}', '{response['type']}')"
-cursor.execute(query)
+#query = "INSERT INTO flor (Nombre, Tipo) VALUES ({response['name']}, {response['type']})"
+#cursor.execute(query)

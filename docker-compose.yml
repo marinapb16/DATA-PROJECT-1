@@ -10,6 +10,7 @@ services:
       DATABASE_HOST: 127.0.0.1
       POSTGRES_USER: user
       POSTGRES_PASSWORD: admin
+      DEBUG: "TRUE"
 
 
     volumes:
@@ -23,6 +24,7 @@ services:
     environment:
       PGADMIN_DEFAULT_EMAIL: raj@nola.com
       PGADMIN_DEFAULT_PASSWORD: admin
+      DEBUG: "TRUE"
     volumes:
       - pgadmin-data:/var/lib/pgadmin
   
@@ -36,9 +38,10 @@ services:
     volumes:
       - ./:/app
     environment:
-      DATABASE_HOST: 127.0.0.1
+      DATABASE_HOST: db
       POSTGRES_USER: user
       POSTGRES_PASSWORD: admin
+      DEBUG: "TRUE"
 
 volumes:
   local_pgdata:
