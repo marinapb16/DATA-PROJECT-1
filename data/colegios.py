@@ -2,13 +2,11 @@ import requests
 import json
 import psycopg2
 
-def data_hospitales():
+def data_colegios():
 
-    url = 'https://valencia.opendatasoft.com/explore/dataset/hospitales/download/?format=json&timezone=Europe/Berlin&lang=es'
+    url = 'https://valencia.opendatasoft.com/explore/dataset/centros-educativos-en-valencia/download/?format=json&timezone=Europe/Berlin&lang=es'
     r = requests.get(url)
     datos = r.json()
-
-    #return response
 
     conexion = psycopg2.connect(
     host='localhost',
@@ -19,10 +17,10 @@ def data_hospitales():
     #conexion.autocommit = True
     cursor = conexion.cursor()
 
-    name_Table = "hospitales"
+    name_Table = "colegios"
 
     # Create table statement
-    sqlCreateTable = "create table "+name_Table+" (Distrito INT, Nombre varchar(100));"
+    sqlCreateTable = "create table "+name_Table+" (CodigoPostal INT, Nombre varchar(100));"
 
     # Create a table in PostgreSQL database
 
@@ -32,11 +30,14 @@ def data_hospitales():
 
     for i in range(len(datos)):
         query = "INSERT INTO hospitales (Distrito, Nombre) VALUES (%s, %s);"
-        variables = [datos[i]['fields']['coddistrit'], datos[i]['fields']['nombre']]
+        variables = [datos[i]['fields']['codpos'], datos[i]['fields']['dlibre']]
         cursor.execute(query,variables)
         conexion.commit()
 
-data_hospitales()
+data_colegios()
 
-    
+
+     
+
+
 

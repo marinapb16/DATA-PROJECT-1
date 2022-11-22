@@ -27,22 +27,6 @@ services:
       DEBUG: "TRUE"
     volumes:
       - pgadmin-data:/var/lib/pgadmin
-  
-  python:
-    image: test
-    command: tail -F anything
-    container_name: python
-    restart: always
-    ports:
-      - "8000:8000"
-    working_dir: /app
-    volumes:
-      - ./:/app
-    environment:
-      DATABASE_HOST: db
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: admin
-      DEBUG: "TRUE"
 
 volumes:
   local_pgdata:
