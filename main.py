@@ -195,6 +195,51 @@ for i in range(len(datosc)):
     cursor.execute(queryc,variablesc)
     conexion.commit()
 
+
+#PARKINGS
+urlp = 'https://valencia.opendatasoft.com/explore/dataset/parkings/download/?format=json&timezone=Europe/Berlin&lang=es'
+r = requests.get(urlp)
+datosp = r.json()
+
+#return response
+
+conexion = psycopg2.connect(
+host='localhost',
+user='user',
+password='admin',
+database='postgres'
+)
+#conexion.autocommit = True
+cursor = conexion.cursor()
+
+name_Tablep = "parkings"
+
+# Create table statement
+sqlCreateTablep = "create table "+name_Tablep+" (ID_parking INT PRIMARY KEY, Nombre varchar(100), CP_parking INT, FOREIGN KEY (CP_parking) references barrios (CP_Barrios));"
+
+# Create a table in PostgreSQL database
+cursor.execute(sqlCreateTablep)
+conexion.commit()
+
+for i in range(len(datosp)):
+    queryp = "INSERT INTO parkings (ID_parking, Nombre, CP_parking) VALUES (%s, %s, %s);"
+    variablesp = [i+1, datosp[i]['fields']['nombre'], random.choice(listacodpos)]
+    cursor.execute(queryp,variablesp)
+    conexion.commit()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 '''
 #TRANSPORTE_PUBLICO
 url_TP = 'https://valencia.opendatasoft.com/api/records/1.0/search/?dataset=transporte-barrios&q='
