@@ -27,7 +27,6 @@ services:
       DEBUG: "TRUE"
     volumes:
       - pgadmin-data:/var/lib/pgadmin
-
       
 volumes:
   local_pgdata:

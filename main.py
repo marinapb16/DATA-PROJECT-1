@@ -228,50 +228,30 @@ for i in range(len(datosp)):
     conexion.commit()
 
 
+#RECARGA COCHES ELÉCTRICOS
+urle = 'https://valencia.opendatasoft.com/explore/dataset/recarrega-vehicles-electrics-recarga-vehiculos-electricos/download/?format=json&timezone=Europe/Berlin&lang=es'
+r = requests.get(urle)
+datose = r.json()
 
-
-
-
-
-
-
-
-
-
-
-
-'''
-#TRANSPORTE_PUBLICO
-url_TP = 'https://valencia.opendatasoft.com/api/records/1.0/search/?dataset=transporte-barrios&q='
-r = requests.get (url_TP)
-datos_TP = r.json ()
-
-print(datos_TP)
-
-#Conexion psycopg2
 conexion = psycopg2.connect(
 host='localhost',
 user='user',
 password='admin',
 database='postgres'
 )
-#conexion.autocommit = True
+
 cursor = conexion.cursor()
 
-name_TableTP ="Transporte_Publico"
+name_Tablee = "recarga"
 
-#Create table statement
-sqlCreateTableTP = "create table "+name_TableTP+" (CodigoPostal INT , Nombre_parada varchar (100), Transporte varchar (100));"
+sqlCreateTablee = "create table "+name_Tablee+" (ID_recarga INT PRIMARY KEY, Nombre varchar(100), CP_recarga INT, FOREIGN KEY (CP_recarga) references barrios (CP_Barrios));"
 
-#Create a table in PostgreSQL database
-cursor.execute (sqlCreateTableTP)
+cursor.execute(sqlCreateTablee)
 conexion.commit()
 
-#Introducir datos a la tabla
-for i in range (len(datos_TP)):
-  queryTP = "INSERT INTO Transporte_Publico (CodigoPostal, Nombre_parada, Transporte) VALUES (%s,%s,%s);"
-  variablesTP = [random.choice(listacodpos), datos_TP['records'][i]['fields']['stop_name'], datos_TP['records'][i]['fields']['transporte']]
-  cursor.execute(queryTP, variablesTP)
-  conexion.commit()
-'''
+for i in range(len(datose)):
+    querye = "INSERT INTO recarga (ID_recarga, Nombre, CP_recarga) VALUES (%s, %s, %s);"
+    variablese = [i+1, datose[i]['fields']['localizacion'], random.choice(listacodpos)]
+    cursor.execute(querye,variablese)
+    conexion.commit()
 
