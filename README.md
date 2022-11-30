@@ -4,9 +4,9 @@ Carlos Torres, Sara Adam, Pablo Martínez, Jorge Arce y Marina Pérez
 
 ## Descripción
 
-    El portl líder de compra de vivienda en España quiere sacar un piloto de calidad de vida aplicado a la vivienda y ha elegido Valencia como sede para su piloto.
-    La idea de este piloto es ofrecer un mapa de calidad de la vivienda en función de indicadores de datos abiertos. 
-    La calidad de la vivienda se medirá por ruido, hospitales, contaminación...teniendo que dar una nota a una zona en concreto en base a dichos parámetros.
+El portl líder de compra de vivienda en España quiere sacar un piloto de calidad de vida aplicado a la vivienda y ha elegido Valencia como sede para su piloto.
+La idea de este piloto es ofrecer un mapa de calidad de la vivienda en función de indicadores de datos abiertos. 
+La calidad de la vivienda se medirá por ruido, hospitales, contaminación...teniendo que dar una nota a una zona en concreto en base a dichos parámetros.
 
 Dentro de la carpeta encontramos los siguientes ficheros:
 
